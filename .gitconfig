@@ -1,0 +1,24 @@
+[user]
+    name = Hung Hsun Chen
+    email = chxun820@gmail.com
+    username = chxun
+[alias]
+    aa = add --all
+    ap = add --patch
+    ba = branch -a
+    bm = branch --merged
+    bn = branch --no-merged
+    ca = commit -a
+    cm = commit -m
+    co = checkout
+    ps = push
+    st = status
+[color]
+    ui = auto
+[core]
+    excludesfile = ~/.gitignore
+    ignorecase = false
+[github]
+    user = Chxun820
+[hub]
+    protocol = https

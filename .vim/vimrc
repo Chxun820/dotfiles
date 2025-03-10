@@ -3,12 +3,14 @@ let mapleader = "\<space>"
 "=== Appearance ==="
 syntax enable
 set number relativenumber
-set splitbelow splitright                       " Split window below/right
-set scrolloff=5                                 " At least left 5 line
-set wildmenu                                    " Enable auto completion menu after pressing TAB
-set completeopt+=menuone                        " Show menu even if there is only one item
-set completeopt-=preview                        " Disable the preview window
-set ruler                                       " Show the cursor's position
+set splitbelow splitright         " Split window below/right
+set scrolloff=5                   " At least left 5 line
+set wildmenu                      " Enable auto completion menu after pressing TAB
+set completeopt+=menuone          " Show menu even if there is only one item
+set completeopt-=preview          " Disable the preview window
+set ruler                         " Show the cursor's position
+set showcmd
+set cmdheight=1
 set nowrap
 
 "=== Tab/Indent ==="
@@ -18,6 +20,7 @@ set shiftwidth=4    " number of spaces to use for autoindent
 set expandtab       " expand tab to spaces so that tabs are spaces
 set smarttab
 set autoindent
+set smartindent
 
 "=== Search/Highlight ==="
 set ignorecase smartcase
@@ -42,6 +45,8 @@ set confirm
 set clipboard^=unnamed,unnamedplus
 set encoding=utf-8
 set spelllang=en,cjk
+set magic           " For regular expression
+set regexpengine=0  " Set regular expression engine automatically
 
 "=== General Keymap ==="
 nnoremap <silent> <Space>sv :source $MYVIMRC<CR>
@@ -70,18 +75,30 @@ vnoremap <leader>d "_d
 vnoremap <leader>D "_D
 
 " Quicker window movement
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-h> <C-w>h
-nnoremap <C-l> <C-w>l
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-h> <C-w>h
+map <C-l> <C-w>l
 
 " Resize split windows using arrow keys by pressing:
-" CTRL+UP, CTRL+DOWN, CTRL+LEFT, or CTRL+RIGHT.
+" CTRL+UP, CTRL+DOWN, CTRL+LEFT, or CTRL+RIGHT. (Not available on macOS)
 noremap <c-up> <c-w>+
 noremap <c-down> <c-w>-
 noremap <c-left> <c-w>>
 noremap <c-right> <c-w><
 
+" Disable highlight
+map <silent> <leader><cr> :noh<cr>
+
 "=== Autocmd ==="
-" Delete all space at the end of line while saving
-autocmd BufWritePre * :%s/\s\+$//e
+" Delete trailing white space on save
+fun! CleanExtraSpaces()
+    let save_cursor = getpos(".")
+    let old_query = getreg('/')
+    silent! %s/\s+$//e
+    call setpos('.', save_cursor)
+    call setreg('/', old_query)
+endfun
+if has("autocmd")
+    autocmd BufWritePre *.txt,*.js,*.py,*.c,*.cpp,*.sh,*md :call CleanExtraSpaces()
+endif

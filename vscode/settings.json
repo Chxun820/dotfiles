@@ -1,7 +1,6 @@
 {
     "breadcrumbs.enabled": false,
     "chat.commandCenter.enabled": false,
-    "C_Cpp.clang_format_fallbackStyle": "{ BasedOnStyle: LLVM, IndentWidth: 4, ColumnLimit: 0}",
     "editor.cursorSurroundingLines": 10,
     "editor.fontSize": 16,
     "editor.fontFamily": "FiraCode Nerd Font Mono, monospace",
@@ -17,6 +16,10 @@
     "editor.scrollbar.horizontal": "hidden",
     "editor.scrollbar.vertical": "hidden",
     "editor.stickyScroll.enabled": false,
+    "editor.unicodeHighlight.allowedLocales": {
+        "zh-hans": true,
+        "zh-hant": true
+    },
     "extensions.ignoreRecommendations": true,
     "terminal.integrated.fontSize": 16,
     "vim.hlsearch": true,
@@ -26,27 +29,6 @@
     "vim.leader": "<space>",
     "vim.smartRelativeLine": true,
     "vim.useSystemClipboard": true,
-    "vim.normalModeKeyBindingsNonRecursive": [
-        {
-            "before": [
-                "leader",
-                "h"
-            ],
-            "commands": [
-                "editor.action.showHover"
-            ]
-        },
-        {
-            "before": [
-                "<leader>",
-                "c",
-                "a"
-            ],
-            "commands": [
-                "editor.action.quickFix"
-            ]
-        },
-    ],
     "workbench.activityBar.location": "hidden",
     "workbench.editor.enablePreview": false,
     "workbench.iconTheme": "material-icon-theme",
